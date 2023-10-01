@@ -5,17 +5,23 @@
     <form>
       <div class="mb-4 text-sm">
         <label for="name" class="block text-gray-600 font-medium mb-1">Product Name</label>
-        <input type="text" id="name" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" required />
+        <input type="text" id="name" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="Nike t-shirt" required />
       </div>
 
       <div class="mb-4 text-sm">
         <label for="description" class="block text-gray-600 font-medium mb-1">Description</label>
-        <textarea id="description" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" rows="5" required></textarea>
+        <textarea id="description" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent"
+          placeholder="Black shirt with half sleeves ad rund neck..." rows="5" required></textarea>
+      </div>
+
+      <div class="mb-4 text-sm">
+        <label for="stock" class="block text-gray-600 font-medium mb-1">Price</label>
+        <input type="number" id="price" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="200" required />
       </div>
 
       <div class="mb-4 text-sm">
         <label for="stock" class="block text-gray-600 font-medium mb-1">Initial Stock</label>
-        <input type="text" id="stock" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" required />
+        <input type="number" id="stock" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="100" required />
       </div>
 
       <div class="mb-4 text-sm">

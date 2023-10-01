@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import DefaultLayout from "../layout/DefaultLayout.vue";
-import RevenueAnalysis from "../views/RevenueAnalysis.vue";
+import RevenueAnalysisView from "../views/RevenueAnalysis.vue";
 import DashboardView from "../views/DashboardView.vue";
-import AddProduct from "../views/AddProductView.vue";
+import AddProductView from "../views/AddProductView.vue";
+import InventoryView from "../views/InventoryView.vue";
 
 const routes = [
   {
@@ -17,12 +18,17 @@ const routes = [
       {
         path: "/revenue-analysis",
         name: "RevenueAnalysis",
-        component: RevenueAnalysis,
+        component: RevenueAnalysisView,
       },
       {
         path: "/add-product",
         name: "AddProduct",
-        component: AddProduct,
+        component: AddProductView,
+      },
+      {
+        path: "/inventory",
+        name: "Inventory",
+        component: InventoryView,
       },
     ],
   },

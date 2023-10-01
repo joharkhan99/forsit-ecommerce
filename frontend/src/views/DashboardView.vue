@@ -61,7 +61,7 @@
         </div>
       </router-link>
 
-      <div
+      <router-link to="/inventory"
         class="lg:w-1/3 md:w-2/3 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
         <div>
           <div class="flex justify-between items-center">
@@ -81,7 +81,7 @@
           </div>
 
         </div>
-      </div>
+      </router-link>
 
       <router-link to="/add-product"
         class="lg:w-1/3 md:w-2/3 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">

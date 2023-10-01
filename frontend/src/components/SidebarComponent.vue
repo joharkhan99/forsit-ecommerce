@@ -30,7 +30,7 @@
             </li>
 
             <li>
-              <router-link to="revenue-analysis" class="flex rounded-md p-2 cursor-pointer text-gray-600 text-sm items-center gap-x-4 mb-2 hover:opacity-90" :class="{
+              <router-link to="/revenue-analysis" class="flex rounded-md p-2 cursor-pointer text-gray-600 text-sm items-center gap-x-4 mb-2 hover:opacity-90" :class="{
                 'bg-blue-500 shadow-lg text-white': $route.path === '/revenue-analysis',
                 'justify-center': !sideBarOpen,
               }">
@@ -41,11 +41,16 @@
               </router-link>
             </li>
 
-            <li class="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-sm text-gray-600 items-center gap-x-4 hover:bg-gray-100 mb-2" :class="!sideBarOpen && 'justify-center'">
-              <ClipboardDocumentListIcon class="w-6 h-6" />
-              <span :class="[!sideBarOpen ? 'hidden' : 'origin-left duration-200 font-semibold']">
-                Inventory
-              </span>
+            <li>
+              <router-link to="inventory" class="flex rounded-md p-2 cursor-pointer text-gray-600 text-sm items-center gap-x-4 mb-2 hover:opacity-90" :class="{
+                'bg-blue-500 shadow-lg text-white': $route.path === '/inventory',
+                'justify-center': !sideBarOpen,
+              }">
+                <ClipboardDocumentListIcon class="w-6 h-6" />
+                <span :class="[!sideBarOpen ? 'hidden' : 'origin-left duration-200 font-semibold']">
+                  Inventory
+                </span>
+              </router-link>
             </li>
 
             <li>
