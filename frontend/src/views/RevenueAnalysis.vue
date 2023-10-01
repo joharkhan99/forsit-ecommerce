@@ -1,42 +1,49 @@
 <template>
   <div>
     <div class="lg:flex md:flex w-full my-6 gap-3">
+
       <div
-        class="lg:w-1/4 md:w-2/4 w-full bg-blue-500 hover:border-transparent shadow-[0_10px_20px_rgba(120,171,253,0.5)] transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 cursor-pointer">
+        class="lg:w-1/4 md:w-2/4 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
         <div>
-          <div class="mb-4">
-            <div class="flex gap-2 items-center font-semibold text-sm group-hover:text-white text-white">
+          <div class="flex justify-between items-center mb-4">
+            <div class="flex gap-2 items-center font-semibold text-sm group-hover:text-white text-blue-500">
               <div>
-                <span class="bg-white text-blue-500 block p-1 rounded-full group-hover:bg-white transition-all">
+                <span class="bg-blue-500 text-blue-500 block p-1 bg-opacity-30 rounded-full group-hover:bg-white transition-all">
                   <EyeIcon class="w-4 h-4" />
                 </span>
               </div>
-              <div>Total Views</div>
+              <div>Total Profits</div>
+            </div>
+            <div>
+              <span>
+                <ChevronRightIcon class="w-5 h-5 text-blue-500 group-hover:text-white" />
+              </span>
             </div>
           </div>
 
-          <div class="flex items-center gap-4">
-            <div class="text-2xl font-semibold text-white">
-              12.32K
+          <div class="flex items-center gap-4 group-hover:text-white">
+            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white">
+              $12,233.21
             </div>
-            <div class="flex rounded-full p-1 px-2.5 text-xs items-center bg-green-200 gap-1">
+            <div class="flex rounded-full p-1 px-2.5 text-xs items-center bg-red-200 gap-1">
               <span>
-                <ArrowTrendingUpIcon class="w-4 h-4 text-green-700" />
+                <ArrowTrendingDownIcon class="w-4 h-4 text-red-700" />
               </span>
-              <span class="text-green-700 font-semibold">25.2%</span>
+              <span class="text-red-700 font-semibold">14.2%</span>
             </div>
           </div>
 
           <div>
-            <span class="text-xs mr-1 text-gray-50">
+            <span class="text-xs text-gray-500 mr-1 group-hover:text-gray-50">
               via last month:
             </span>
-            <span class="text-xs font-semibold text-white">
-              112.323k
+            <span class="text-xs text-black font-semibold group-hover:text-white">
+              $15,122.0
             </span>
           </div>
         </div>
       </div>
+
       <div
         class="lg:w-1/4 md:w-2/4 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
         <div>
