@@ -13,17 +13,6 @@
 
     </div>
   </div>
-
-
-  <!-- <div>
-    <HeaderComponent />
-
-    <main>
-      <router-view></router-view>
-    </main>
-
-    <FooterComponent />
-  </div> -->
 </template>
 
 <script setup>
