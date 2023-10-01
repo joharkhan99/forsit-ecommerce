@@ -18,7 +18,10 @@
         <div class="overflow-hidden h-screen border-t p-4 mt-0.5 border-gray-100 pt-6">
           <ul class="overflow-auto h-screen custom-scrollbar">
             <li>
-              <router-link to="/" class="flex rounded-md p-2 cursor-pointer text-white text-sm items-center gap-x-4 bg-blue-500 shadow-lg mb-2" :class="!sideBarOpen && 'justify-center'">
+              <router-link to="/" class="flex rounded-md p-2 cursor-pointer text-gray-600 text-sm items-center gap-x-4 mb-2 hover:opacity-90" :class="{
+                'bg-blue-500 shadow-lg text-white': $route.path === '/',
+                'justify-center': !sideBarOpen,
+              }">
                 <Squares2X2Icon class="w-6 h-6" />
                 <span :class="{ 'hidden': !sideBarOpen, 'origin-left duration-200 font-semibold': sideBarOpen }">
                   Dashboard
@@ -27,8 +30,10 @@
             </li>
 
             <li>
-              <router-link to="revenue-analysis" class="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-sm text-gray-600 items-center gap-x-4 hover:bg-gray-100 mb-2"
-                :class="!sideBarOpen && 'justify-center'">
+              <router-link to="revenue-analysis" class="flex rounded-md p-2 cursor-pointer text-gray-600 text-sm items-center gap-x-4 mb-2 hover:opacity-90" :class="{
+                'bg-blue-500 shadow-lg text-white': $route.path === '/revenue-analysis',
+                'justify-center': !sideBarOpen,
+              }">
                 <CurrencyDollarIcon class="w-6 h-6" />
                 <span :class="[!sideBarOpen ? 'hidden' : 'origin-left duration-200 font-semibold']">
                   Revenue Analysis
@@ -44,8 +49,10 @@
             </li>
 
             <li>
-              <router-link to="add-product" class="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-sm text-gray-600 items-center gap-x-4 hover:bg-gray-100 mb-2"
-                :class="!sideBarOpen && 'justify-center'">
+              <router-link to="add-product" class="flex rounded-md p-2 cursor-pointer text-gray-600 text-sm items-center gap-x-4 mb-2 hover:opacity-90" :class="{
+                'bg-blue-500 shadow-lg text-white': $route.path === '/add-product',
+                'justify-center': !sideBarOpen,
+              }">
                 <PlusCircleIcon class="w-6 h-6" />
                 <span :class="[!sideBarOpen ? 'hidden' : 'origin-left duration-200 font-semibold']">
                   Add Product
@@ -53,6 +60,7 @@
               </router-link>
             </li>
           </ul>
+
         </div>
       </div>
     </div>
