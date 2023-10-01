@@ -5,7 +5,7 @@
         <div class="absolute inset-y-0 flex items-center pl-2 text-gray-100">
           <MagnifyingGlassIcon class="w-4 h-4 text-gray-400" />
         </div>
-        <input type="text" class="text-sm rounded-lg pl-8 block w-full p-2.5 bg-gray-100 outline-none border ring-purple-700 focus:ring-2 focus:bg-transparent hover:bg-gray-200 hover:bg-opacity-70"
+        <input type="text" class="text-sm rounded-lg pl-8 block w-full p-2.5 bg-gray-100 outline-none border ring-blue-600 focus:ring-2 focus:bg-transparent hover:bg-gray-200 hover:bg-opacity-70"
           placeholder="Search..." required />
       </div>
     </div>
