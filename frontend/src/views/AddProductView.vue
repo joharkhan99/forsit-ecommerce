@@ -5,31 +5,29 @@
     <form @submit.prevent="addProduct">
       <div class="mb-4 text-sm">
         <label for="name" class="block text-gray-600 font-medium mb-1">Product Name</label>
-        <input v-model="name" type="text" id="name" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="Nike t-shirt"
-          required />
+        <input type="text" id="name" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="Nike t-shirt"
+          v-model="name" />
       </div>
 
       <div class="mb-4 text-sm">
         <label for="description" class="block text-gray-600 font-medium mb-1">Description</label>
-        <textarea v-model="description" id="description" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent"
-          placeholder="Black shirt with half sleeves ad rund neck..." rows="5" required></textarea>
+        <textarea id="description" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent"
+          placeholder="Black shirt with half sleeves ad rund neck..." v-model="description" rows="5"></textarea>
       </div>
 
       <div class="mb-4 text-sm">
-        <label for="stock" class="block text-gray-600 font-medium mb-1">Price</label>
-        <input v-model.number="price" type="number" id="price" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="200"
-          required />
+        <label for="price" class="block text-gray-600 font-medium mb-1">Price</label>
+        <input type="number" id="price" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="200" v-model="price" />
       </div>
 
       <div class="mb-4 text-sm">
         <label for="stock" class="block text-gray-600 font-medium mb-1">Initial Stock</label>
-        <input v-model.number="stock" type="number" id="stock" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="100"
-          required />
+        <input type="number" id="stock" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-blue-500 focus:ring-2 bg-gray-100 focus:bg-transparent" placeholder="100" v-model="stock" />
       </div>
 
       <div class="mb-4 text-sm">
         <label for="image" class="block text-gray-600 font-semibold mb-4">Product Images</label>
-        <input type="file" id="image" ref="productImageInput" class="hidden" accept="image/*" multiple />
+        <input type="file" id="image" name="images" class="hidden" accept="image/*" ref="image" />
         <label for="image" class="cursor-pointer bg-gray-100 border border-gray-200 text-gray-600 rounded-lg p-3 px-5 hover:bg-gray-200">
           Upload Images
         </label>
@@ -49,34 +47,29 @@ import { ref } from 'vue';
 
 const name = ref('');
 const description = ref('');
-const price = ref(null);
-const stock = ref(null);
+const price = ref('');
+const stock = ref('');
+const image = ref('');
 
-const addProduct = () => {
+const addProduct = async () => {
+  console.log(image.value.files);
+
   const formData = new FormData();
+  formData.append('image', image.value.files[0]);
   formData.append('name', name.value);
   formData.append('description', description.value);
   formData.append('price', price.value);
   formData.append('stock', stock.value);
 
-  // Make an HTTP POST request to your backend API
-  fetch('http://localhost:3000/api/products', {
+  await fetch('http://localhost:8000/api/product', {
     method: 'POST',
     body: formData,
   })
-    .then((response) => response.json())
+    .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      // Handle response here
     })
-    .catch((error) => {
-      console.error(error);
-      // Handle errors here
-    });
+    .catch((err) => console.log(err));
 };
 
 </script>
-
-<style scoped>
-/* Your component styles here */
-</style>

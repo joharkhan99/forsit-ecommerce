@@ -1,18 +1,13 @@
-// server.js
-
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const { Product } = require("./models/Product");
-const app = express();
 const cors = require("cors");
+const { Product } = require("./models/Product");
+const cloudinary = require("cloudinary").v2;
+const multer = require("multer");
+require("dotenv").config();
 
-// Connect to MongoDB (make sure MongoDB is running)
-// mongoose.connect("mongodb://localhost/productDB", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
+const app = express();
 // Middleware
 app.use(
   cors({
@@ -22,31 +17,61 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// API Routes
-app.post("/api/products", (req, res) => {
-  res.status(201).json({ message: "Product added successfully" });
-
-  // const { name, description, price, stock } = req.body;
-
-  // const product = new Product({
-  //   name,
-  //   description,
-  //   price,
-  //   stock,
-  // });
-
-  // product.save((err) => {
-  //   if (err) {
-  //     console.error(err);
-  //     res.status(500).json({ error: "Error saving product" });
-  //   } else {
-  //     res.status(201).json({ message: "Product added successfully" });
-  //   }
-  // });
+// Cloudinary config
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+async function handleUpload(file) {
+  const res = await cloudinary.uploader.upload(file, {
+    resource_type: "auto",
+    folder: "products",
+  });
+  return res.url;
+}
+
+app.post("/api/product", upload.single("image"), async (req, res) => {
+  try {
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    const cldRes = await handleUpload(dataURI);
+
+    const { name, description, price, stock } = req.body;
+    const product = new Product({
+      name,
+      description,
+      price,
+      stock,
+      image: cldRes,
+    });
+
+    product.save();
+    res.json(cldRes);
+  } catch (error) {
+    console.log(error);
+    res.send({
+      message: error.message,
+    });
+  }
 });
+
+// connect mongo and Start the server
+const port = process.env.PORT || 5000;
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Listening on ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
