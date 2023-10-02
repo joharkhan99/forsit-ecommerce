@@ -27,10 +27,11 @@
 
       <div class="mb-4 text-sm">
         <label for="image" class="block text-gray-600 font-semibold mb-4">Product Images</label>
-        <input type="file" id="image" name="images" class="hidden" accept="image/*" ref="image" />
+        <input type="file" id="image" name="images" class="hidden" accept="image/*" ref="image" @change="UpdateFileName" />
         <label for="image" class="cursor-pointer bg-gray-100 border border-gray-200 text-gray-600 rounded-lg p-3 px-5 hover:bg-gray-200">
-          Upload Images
+          Upload Image
         </label>
+        <span class="ml-2 text-xs text-gray-900 border border-dashed p-1 rounded-sm" v-if="filename">{{ filename }}</span>
       </div>
 
       <div class="mt-12">
@@ -50,6 +51,7 @@ const description = ref('');
 const price = ref('');
 const stock = ref('');
 const image = ref('');
+const filename = ref('');
 
 const addProduct = async () => {
   console.log(image.value.files);
@@ -70,6 +72,10 @@ const addProduct = async () => {
       console.log(data);
     })
     .catch((err) => console.log(err));
+};
+
+const UpdateFileName = () => {
+  filename.value = image.value.files[0].name;
 };
 
 </script>

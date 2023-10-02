@@ -51,12 +51,10 @@ app.post("/api/product", upload.single("image"), async (req, res) => {
     });
 
     product.save();
-    res.json(cldRes);
+    res.json({ status: "success", message: "Product created successfully" });
   } catch (error) {
     console.log(error);
-    res.send({
-      message: error.message,
-    });
+    res.json({ status: "error", message: "Something went wrong" });
   }
 });
 
