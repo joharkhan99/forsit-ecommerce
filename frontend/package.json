@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.18",
+    "apexcharts": "^3.43.0",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue3-apexcharts": "^1.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

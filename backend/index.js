@@ -79,6 +79,109 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
+app.get("/api/analysis", async (req, res) => {
+  try {
+    const totalProducts = await Product.countDocuments();
+    const totalProductsLastMonth =
+      (await Product.find({
+        createdAt: {
+          $gte: new Date(
+            new Date().getFullYear(),
+            new Date().getMonth() - 1,
+            1
+          ),
+          $lt: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+        },
+      }).length) || 0;
+
+    const totalRevenue =
+      (await Product.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalRevenue: { $sum: "$price" },
+          },
+        },
+      ])) || 0;
+
+    const lastMonthRevenue = await Product.aggregate([
+      {
+        $match: {
+          createdAt: {
+            $gte: new Date(
+              new Date().getFullYear(),
+              new Date().getMonth() - 1,
+              1
+            ),
+            $lt: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+          },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          lastMonthRevenue: { $sum: "$price" },
+        },
+      },
+    ]);
+
+    const totalStock =
+      (await Product.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalStock: { $sum: "$stock" },
+          },
+        },
+      ])) || 0;
+
+    const lastMonthStock = await Product.aggregate([
+      {
+        $match: {
+          createdAt: {
+            $gte: new Date(
+              new Date().getFullYear(),
+              new Date().getMonth() - 1,
+              1
+            ),
+            $lt: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+          },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          lastMonthStock: { $sum: "$stock" },
+        },
+      },
+    ]);
+
+    const newProducts = await Product.find({
+      createdAt: { $gte: new Date().setDate(new Date().getDate() - 7) },
+    }).countDocuments();
+
+    res.json({
+      cardsData: {
+        productsCard: { totalProducts, totalProductsLastMonth },
+        revenueCard: {
+          totalRevenue: totalRevenue[0]["totalRevenue"],
+          lastMonthRevenue: lastMonthRevenue[0]["lastMonthRevenue"],
+        },
+        stockCard: {
+          totalStock: totalStock[0]["totalStock"],
+          lastMonthStock: lastMonthStock[0]["lastMonthStock"],
+        },
+        newProductsCard: {
+          newProducts,
+        },
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error fetching products" });
+  }
+});
+
 // connect mongo and Start the server
 const port = process.env.PORT || 5000;
 mongoose

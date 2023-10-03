@@ -2,17 +2,17 @@
   <div>
     <div class="lg:flex md:flex w-full my-6 gap-3">
 
-      <div
+      <router-link to="/inventory"
         class="lg:w-1/4 md:w-2/4 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
         <div>
           <div class="flex justify-between items-center mb-4">
             <div class="flex gap-2 items-center font-semibold text-sm group-hover:text-white text-blue-500">
               <div>
                 <span class="bg-blue-500 text-blue-500 block p-1 bg-opacity-30 rounded-full group-hover:bg-white transition-all">
-                  <EyeIcon class="w-4 h-4" />
+                  <ArchiveBoxIcon class="w-4 h-4" />
                 </span>
               </div>
-              <div>Total Profits</div>
+              <div>Total Products</div>
             </div>
             <div>
               <span>
@@ -22,14 +22,9 @@
           </div>
 
           <div class="flex items-center gap-4 group-hover:text-white">
-            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white">
-              $12,233.21
-            </div>
-            <div class="flex rounded-full p-1 px-2.5 text-xs items-center bg-red-200 gap-1">
-              <span>
-                <ArrowTrendingDownIcon class="w-4 h-4 text-red-700" />
-              </span>
-              <span class="text-red-700 font-semibold">14.2%</span>
+            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white" v-if="cardsData.productsCard">
+              <!-- sd -->
+              {{ cardsData.productsCard.totalProducts }}
             </div>
           </div>
 
@@ -37,24 +32,56 @@
             <span class="text-xs text-gray-500 mr-1 group-hover:text-gray-50">
               via last month:
             </span>
-            <span class="text-xs text-black font-semibold group-hover:text-white">
-              $15,122.0
+            <span class="text-xs text-black font-semibold group-hover:text-white" v-if="cardsData.productsCard">
+              {{ cardsData.productsCard.totalProductsLastMonth }}
+            </span>
+          </div>
+        </div>
+      </router-link>
+
+      <div
+        class="lg:w-1/4 md:w-2/4 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <div class="flex gap-2 items-center font-semibold text-sm group-hover:text-white text-blue-500">
+              <div>
+                <span class="bg-blue-500 text-blue-500 block p-1 bg-opacity-30 rounded-full group-hover:bg-white transition-all">
+                  <CurrencyDollarIcon class="w-4 h-4" />
+                </span>
+              </div>
+              <div>Total Revenue</div>
+            </div>
+
+          </div>
+
+          <div class="flex items-center gap-4 group-hover:text-white">
+            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white" v-if="cardsData.revenueCard">
+              ${{ cardsData.revenueCard.totalRevenue }}
+            </div>
+          </div>
+
+          <div>
+            <span class="text-xs text-gray-500 mr-1 group-hover:text-gray-50">
+              via last month:
+            </span>
+            <span class="text-xs text-black font-semibold group-hover:text-white" v-if="cardsData.revenueCard">
+              ${{ cardsData.revenueCard.lastMonthRevenue }}
             </span>
           </div>
         </div>
       </div>
 
-      <div
+      <router-link to="/inventory"
         class="lg:w-1/4 md:w-2/4 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
         <div>
           <div class="flex justify-between items-center mb-4">
             <div class="flex gap-2 items-center font-semibold text-sm group-hover:text-white text-blue-500">
               <div>
                 <span class="bg-blue-500 text-blue-500 block p-1 bg-opacity-30 rounded-full group-hover:bg-white transition-all">
-                  <PresentationChartBarIcon class="w-4 h-4" />
+                  <Square3Stack3DIcon class="w-4 h-4" />
                 </span>
               </div>
-              <div>Total Profits</div>
+              <div>Total Stocks</div>
             </div>
             <div>
               <span>
@@ -64,14 +91,8 @@
           </div>
 
           <div class="flex items-center gap-4 group-hover:text-white">
-            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white">
-              $12,233.21
-            </div>
-            <div class="flex rounded-full p-1 px-2.5 text-xs items-center bg-red-200 gap-1">
-              <span>
-                <ArrowTrendingDownIcon class="w-4 h-4 text-red-700" />
-              </span>
-              <span class="text-red-700 font-semibold">14.2%</span>
+            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white" v-if="cardsData.stockCard">
+              {{ cardsData.stockCard.totalStock }}
             </div>
           </div>
 
@@ -79,12 +100,12 @@
             <span class="text-xs text-gray-500 mr-1 group-hover:text-gray-50">
               via last month:
             </span>
-            <span class="text-xs text-black font-semibold group-hover:text-white">
-              $15,122.0
+            <span class="text-xs text-black font-semibold group-hover:text-white" v-if="cardsData.stockCard">
+              {{ cardsData.stockCard.lastMonthStock }}
             </span>
           </div>
         </div>
-      </div>
+      </router-link>
 
       <div
         class="lg:w-1/4 md:w-2/4 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
@@ -93,10 +114,10 @@
             <div class="flex gap-2 items-center font-semibold text-sm group-hover:text-white text-blue-500">
               <div>
                 <span class="bg-blue-500 text-blue-500 block p-1 bg-opacity-30 rounded-full group-hover:bg-white transition-all">
-                  <UsersIcon class="w-4 h-4" />
+                  <ArchiveBoxArrowDownIcon class="w-4 h-4" />
                 </span>
               </div>
-              <div>New Customers</div>
+              <div>New Products</div>
             </div>
             <div>
               <span>
@@ -106,66 +127,10 @@
           </div>
 
           <div class="flex items-center gap-4 group-hover:text-white">
-            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white">
-              630
+            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white" v-if="cardsData.newProductsCard">
+              {{ cardsData.newProductsCard.newProducts }}
+              <span class="text-xs text-gray-500 mr-1 group-hover:text-gray-50 font-normal ml-1">last week</span>
             </div>
-            <div class="flex rounded-full p-1 px-2.5 text-xs items-center bg-green-200 gap-1">
-              <span>
-                <ArrowTrendingUpIcon class="w-4 h-4 text-green-700" />
-              </span>
-              <span class="text-green-700 font-semibold">20%</span>
-            </div>
-          </div>
-
-          <div>
-            <span class="text-xs text-gray-500 mr-1 group-hover:text-gray-50">
-              via last month:
-            </span>
-            <span class="text-xs text-black font-semibold group-hover:text-white">
-              510
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="lg:w-1/4 md:w-2/4 w-full bg-white shadow-lg hover:border-transparent shadow-gray-200 transition-all hover:bg-blue-500 hover:shadow-[0_10px_20px_rgba(120,171,253,0.5)] rounded-xl p-6 group hover:scale-105 border border-gray-200 cursor-pointer">
-        <div>
-          <div class="flex justify-between items-center mb-4">
-            <div class="flex gap-2 items-center font-semibold text-sm group-hover:text-white text-blue-500">
-              <div>
-                <span class="bg-blue-500 text-blue-500 block p-1 bg-opacity-30 rounded-full group-hover:bg-white transition-all">
-                  <LightBulbIcon class="w-4 h-4" />
-                </span>
-              </div>
-              <div>Running Projects</div>
-            </div>
-            <div>
-              <span>
-                <ChevronRightIcon class="w-5 h-5 text-blue-500 group-hover:text-white" />
-              </span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4 group-hover:text-white">
-            <div class="text-2xl font-semibold text-gray-900 group-hover:text-white">
-              25
-            </div>
-            <div class="flex rounded-full p-1 px-2.5 text-xs items-center bg-red-200 gap-1">
-              <span>
-                <ArrowTrendingDownIcon class="w-4 h-4 text-red-700" />
-              </span>
-              <span class="text-red-700 font-semibold">15%</span>
-            </div>
-          </div>
-
-          <div>
-            <span class="text-xs text-gray-500 mr-1 group-hover:text-gray-50">
-              via last month:
-            </span>
-            <span class="text-xs text-black font-semibold group-hover:text-white">
-              18
-            </span>
           </div>
         </div>
       </div>
@@ -174,20 +139,12 @@
     <div class="bg-white rounded-xl p-6 w-full my-6 max-w-full shadow-xl shadow-gray-200">
       <div class="mb-3 flex justify-between items-center">
         <span class="font-bold text-2xl text-gray-900">
-          Overview Orders
+          Overview Revenue
         </span>
-        <div>
-          <select class="text-sm bg-gray-100 rounded-lg p-2 px-3 text-gray-600 outline-none focus:ring focus:ring-gray-200 cursor-pointer">
-            <option value="1" selected>
-              Last 7 days
-            </option>
-            <option value="2">Last 30 days</option>
-            <option value="3">Last 90 days</option>
-          </select>
-        </div>
+
       </div>
       <div>
-        <!-- <OrderChart /> -->
+        <RevenueChart />
       </div>
     </div>
 
@@ -200,7 +157,7 @@
 
       <div class="lg:flex rounded-xl">
         <div class="lg:w-1/3">
-          <div class="flex gap-3 items-center mb-5">
+          <!-- <div class="flex gap-3 items-center mb-5">
             <div>
               <span class="rounded-full bg-green-200 block p-1">
                 <ArrowTrendingUpIcon class="w-4 h-4 text-green-700" />
@@ -210,9 +167,9 @@
             <div class="text-gray-500 text-xs">
               - Increased This Week
             </div>
-          </div>
+          </div> -->
 
-          <div>
+          <div class="mt-3">
             <ul>
               <li class="flex justify-between items-center hover:bg-gray-100 rounded-lg mb-4">
                 <div class="flex items-center gap-5">
@@ -224,11 +181,11 @@
                     <span class="text-lg font-bold">$2.13K</span>
                   </div>
                 </div>
-                <div class="rounded-full p-0 px-3  bg-green-200 gap-1 text-center">
+                <!-- <div class="rounded-full p-0 px-3  bg-green-200 gap-1 text-center">
                   <span class="text-xs text-green-700 font-medium">
                     5.7%
                   </span>
-                </div>
+                </div> -->
                 <div class="rounded-full p-0 px-3  bg-gray-200 gap-1 text-center">
                   <span class="text-xs text-gray-700 font-medium">
                     22 May 2023
@@ -303,7 +260,7 @@
         </div>
         <div class="lg:w-2/3 mt-4 lg:mt-0">
           <div>
-            <!-- <EarningChart /> -->
+            <StockChart />
           </div>
         </div>
       </div>
@@ -312,5 +269,29 @@
 </template>
 
 <script setup>
-import { ChevronRightIcon, EyeIcon, PresentationChartBarIcon, UsersIcon, LightBulbIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon } from '@heroicons/vue/24/outline'
+import { ChevronRightIcon, ArchiveBoxIcon, CurrencyDollarIcon, Square3Stack3DIcon, ArchiveBoxArrowDownIcon } from '@heroicons/vue/24/outline';
+import { ref, onMounted } from 'vue';
+import StockChart from '../components/charts/StockChart.vue';
+import RevenueChart from '../components/charts/RevenueChart.vue';
+const cardsData = ref([]);
+
+const fetchData = async () => {
+  try {
+    const response = await fetch('http://localhost:8000/api/analysis');
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.statusText}`);
+    }
+    const data = await response.json();
+    cardsData.value = data.cardsData;
+
+    console.log(cardsData.value);
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+onMounted(fetchData);
+
+
 </script>
