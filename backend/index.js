@@ -42,19 +42,40 @@ app.post("/api/product", upload.single("image"), async (req, res) => {
     const cldRes = await handleUpload(dataURI);
 
     const { name, description, price, stock } = req.body;
+    var level = "Low";
+    if (stock > 100) {
+      level = "High";
+    } else if (stock > 50) {
+      level = "Average";
+    }
+
     const product = new Product({
       name,
       description,
       price,
       stock,
       image: cldRes,
+      level,
     });
 
     product.save();
     res.json({ status: "success", message: "Product created successfully" });
   } catch (error) {
     console.log(error);
-    res.json({ status: "error", message: "Something went wrong" });
+    res.json({
+      status: "error",
+      message: "Something went wrong! Please try again",
+    });
+  }
+});
+
+app.get("/api/products", async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error fetching products" });
   }
 });
 
