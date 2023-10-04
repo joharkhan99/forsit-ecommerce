@@ -144,123 +144,21 @@
 
       </div>
       <div>
-        <RevenueChart />
+        <RevenueChart :chartData="revenueChartData" v-if="cardsData.newProductsCard" />
       </div>
     </div>
 
     <div class="p-6 bg-white shadow-lg rounded-xl shadow-gray-200">
       <div class="mb-3">
         <span class="font-bold text-2xl text-gray-900 block">
-          Earning Report
+          Inventory Stocks Report
         </span>
       </div>
 
       <div class="lg:flex rounded-xl">
-        <div class="lg:w-1/3">
-          <!-- <div class="flex gap-3 items-center mb-5">
-            <div>
-              <span class="rounded-full bg-green-200 block p-1">
-                <ArrowTrendingUpIcon class="w-4 h-4 text-green-700" />
-              </span>
-            </div>
-            <div class="text-green-600 font-semibold">+7.2%</div>
-            <div class="text-gray-500 text-xs">
-              - Increased This Week
-            </div>
-          </div> -->
-
-          <div class="mt-3">
-            <ul>
-              <li class="flex justify-between items-center hover:bg-gray-100 rounded-lg mb-4">
-                <div class="flex items-center gap-5">
-                  <div class="bg-gray-100 p-1.5 rounded-full">
-                    <img src="https://mir-s3-cdn-cf.behance.net/user/50/2ec25f505091121.64c0087b7bd73.png" alt="" class="h-12 w-12 rounded-full" />
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="text-xs text-gray-500">Facebook</span>
-                    <span class="text-lg font-bold">$2.13K</span>
-                  </div>
-                </div>
-                <!-- <div class="rounded-full p-0 px-3  bg-green-200 gap-1 text-center">
-                  <span class="text-xs text-green-700 font-medium">
-                    5.7%
-                  </span>
-                </div> -->
-                <div class="rounded-full p-0 px-3  bg-gray-200 gap-1 text-center">
-                  <span class="text-xs text-gray-700 font-medium">
-                    22 May 2023
-                  </span>
-                </div>
-              </li>
-              <li class="flex justify-between items-center hover:bg-gray-100 rounded-lg mb-4">
-                <div class="flex items-center gap-5">
-                  <div class="bg-gray-100 p-1.5 rounded-full">
-                    <img src="https://cdn.dribbble.com/users/14379669/avatars/normal/1f4ebd77a0db9bb01986ed2c943485f2.jpg?1671474840&resize=40x40" alt="" class="h-12 w-12 rounded-full" />
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="text-xs text-gray-500">Facebook</span>
-                    <span class="text-lg font-bold">$2.13K</span>
-                  </div>
-                </div>
-                <div class="rounded-full p-0 px-3  bg-green-200 gap-1 text-center">
-                  <span class="text-xs text-green-700 font-medium">
-                    5.7%
-                  </span>
-                </div>
-                <div class="rounded-full p-0 px-3  bg-gray-200 gap-1 text-center">
-                  <span class="text-xs text-gray-700 font-medium">
-                    22 May 2023
-                  </span>
-                </div>
-              </li>
-              <li class="flex justify-between items-center hover:bg-gray-100 rounded-lg mb-4">
-                <div class="flex items-center gap-5">
-                  <div class="bg-gray-100 p-1.5 rounded-full">
-                    <img src="https://cdn.dribbble.com/users/16361925/avatars/normal/27e34e235e95b7eb13d137903a49c31e.png?1695370101&resize=40x40" alt="" class="h-12 w-12 rounded-full" />
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="text-xs text-gray-500">Facebook</span>
-                    <span class="text-lg font-bold">$2.13K</span>
-                  </div>
-                </div>
-                <div class="rounded-full p-0 px-3  bg-green-200 gap-1 text-center">
-                  <span class="text-xs text-green-700 font-medium">
-                    5.7%
-                  </span>
-                </div>
-                <div class="rounded-full p-0 px-3  bg-gray-200 gap-1 text-center">
-                  <span class="text-xs text-gray-700 font-medium">
-                    22 May 2023
-                  </span>
-                </div>
-              </li>
-              <li class="flex justify-between items-center hover:bg-gray-100 rounded-lg mb-4">
-                <div class="flex items-center gap-5">
-                  <div class="bg-gray-100 p-1.5 rounded-full">
-                    <img src="https://cdn.dribbble.com/users/9196316/avatars/normal/f6e9f41f806541156d32e40ce1652055.png?1690621521&resize=40x40" alt="" class="h-12 w-12 rounded-full" />
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="text-xs text-gray-500">Facebook</span>
-                    <span class="text-lg font-bold">$2.13K</span>
-                  </div>
-                </div>
-                <div class="rounded-full p-0 px-3  bg-green-200 gap-1 text-center">
-                  <span class="text-xs text-green-700 font-medium">
-                    5.7%
-                  </span>
-                </div>
-                <div class="rounded-full p-0 px-3  bg-gray-200 gap-1 text-center">
-                  <span class="text-xs text-gray-700 font-medium">
-                    22 May 2023
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="lg:w-2/3 mt-4 lg:mt-0">
+        <div class="w-full mt-4 lg:mt-0">
           <div>
-            <StockChart />
+            <StockChart :chartData="stockChartData" v-if="cardsData.newProductsCard" />
           </div>
         </div>
       </div>
@@ -273,7 +171,10 @@ import { ChevronRightIcon, ArchiveBoxIcon, CurrencyDollarIcon, Square3Stack3DIco
 import { ref, onMounted } from 'vue';
 import StockChart from '../components/charts/StockChart.vue';
 import RevenueChart from '../components/charts/RevenueChart.vue';
+
 const cardsData = ref([]);
+const revenueChartData = ref([]);
+const stockChartData = ref([]);
 
 const fetchData = async () => {
   try {
@@ -284,7 +185,12 @@ const fetchData = async () => {
     const data = await response.json();
     cardsData.value = data.cardsData;
 
+    revenueChartData.value = cardsData.value.revenueChartData;
+    stockChartData.value = cardsData.value.stockChartData;
+
     console.log(cardsData.value);
+
+    // console.log("TEST", revenueChartData.value);
 
   } catch (error) {
     console.error(error);
