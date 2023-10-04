@@ -44,7 +44,6 @@
               <th scope="col" class="text-sm font-semibold text-gray-900 pb-4">Price</th>
               <th scope="col" class="text-sm font-semibold text-gray-900 pb-4">Stock</th>
               <th scope="col" class="text-sm font-semibold text-gray-900 pb-4">Inventory</th>
-              <th scope="col" class="text-sm font-semibold text-gray-900 pb-4">Actions</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -62,11 +61,6 @@
                 <span :class="InventeryLevelClass(product.level)" class="p-1 px-2 rounded">
                   {{ product.level }}
                 </span>
-              </td>
-              <td class="py-2">
-                <button class="bg-blue-500 border text-white rounded-md p-1 px-2 hover:bg-blue-600">
-                  Update Level
-                </button>
               </td>
             </tr>
 
@@ -89,7 +83,7 @@ const products = ref([]);
 
 const fetchProducts = async () => {
   try {
-    const response = await fetch('http://localhost:8000/api/products');
+    const response = await fetch(`${process.env.VUE_APP_BASE_URL}/api/products`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -102,7 +96,6 @@ const fetchProducts = async () => {
 };
 
 onMounted(fetchProducts);
-
 
 const selectedFilterOption = ref('all');
 const filteredAndSortedProductList = computed(() => {

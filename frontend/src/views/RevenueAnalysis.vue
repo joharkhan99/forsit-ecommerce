@@ -178,7 +178,7 @@ const stockChartData = ref([]);
 
 const fetchData = async () => {
   try {
-    const response = await fetch('http://localhost:8000/api/analysis');
+    const response = await fetch(`${process.env.VUE_APP_BASE_URL}/api/analysis`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.statusText}`);
     }

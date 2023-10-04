@@ -28,7 +28,7 @@
       </div>
 
       <div class="mb-4 text-sm">
-        <label for="image" class="block text-gray-600 font-semibold mb-4">Product Images</label>
+        <label for="image" class="block text-gray-600 font-semibold mb-4">Product Image</label>
         <input type="file" id="image" name="images" class="hidden" accept="image/*" ref="image" @change="UpdateFileName" required />
         <label for="image" class="cursor-pointer bg-gray-100 border border-gray-200 text-gray-600 rounded-lg p-3 px-5 hover:bg-gray-200">
           Upload Image
@@ -68,7 +68,7 @@ const addProduct = async () => {
   formData.append('price', price.value);
   formData.append('stock', stock.value);
 
-  await fetch('http://localhost:8000/api/product', {
+  await fetch(`${process.env.VUE_APP_BASE_URL}/api/product`, {
     method: 'POST',
     body: formData,
   })
@@ -76,6 +76,7 @@ const addProduct = async () => {
     .then((data) => {
       if (data.status == 'error') {
         alert(data.message);
+        isAddingProduct.value = false;
       } else {
         console.log(data);
         router.push({ name: 'Inventory' });
